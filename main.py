@@ -31,7 +31,7 @@ def get_humidity():
   weather = res['data']['list'][0]
   return weather['humidity']
 
-  def get_lastUpdateTime():
+ def get_lastUpdateTime():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]

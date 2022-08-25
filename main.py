@@ -31,7 +31,11 @@ def get_humidity():
   weather = res['data']['list'][0]
   return weather['humidity']
 
-  
+  def get_weathercity():
+  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  res = requests.get(url).json()
+  weather = res['data']['list'][0]
+  return weather['city']
 # 到这里结束
 
 def get_count():
@@ -59,6 +63,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
 hum = get_humidity()
-data = {"humidity":{"value":hum},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+cit = get_weathercity()
+data = {"humidity":{"value":hum,"color":get_random_color()},"weathercity":{"value":cit,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

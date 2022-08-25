@@ -31,11 +31,7 @@ def get_humidity():
   weather = res['data']['list'][0]
   return humidity['humidity']
 
-  def get_weathercity():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-  res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return city['city'])
+  
 # 到这里结束
 
 def get_count():
